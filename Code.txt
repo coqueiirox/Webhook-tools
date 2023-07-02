@@ -106,7 +106,7 @@ public class WebhookSender extends JFrame {
             @Override
             public void keyPressed(KeyEvent e) {
                 if (e.getKeyCode() == KeyEvent.VK_ENTER) {
-                    e.consume(); // Impede que uma nova linha seja adicionada
+                    e.consume(); 
                     String message = singleTextArea.getText();
                     try {
                         sendWebhookMessage(message);
@@ -126,7 +126,7 @@ public class WebhookSender extends JFrame {
                 String message = singleTextArea.getText();
                 try {
                     sendWebhookMessage(message);
-                    singleTextArea.setText(""); // Limpar o texto da caixa de texto
+                    singleTextArea.setText(""); 
                 } catch (IOException ex) {
                     System.err.println("Erro ao enviar mensagem para o webhook: " + ex.getMessage());
                 }
@@ -146,7 +146,7 @@ public class WebhookSender extends JFrame {
         add(tabbedPane, BorderLayout.CENTER);
 
         pack();
-        setLocationRelativeTo(null); // Centralizar a janela na tela
+        setLocationRelativeTo(null); 
         setVisible(false);
 
         showCustomMessage();
@@ -182,8 +182,6 @@ public class WebhookSender extends JFrame {
     }
 
     private boolean isValidWebhook(String webhook) {
-        // Verificar se o webhook é válido
-        // Aqui você pode adicionar a lógica para validar o formato do URL do webhook
         return !webhook.isEmpty();
     }
 
@@ -209,13 +207,10 @@ public class WebhookSender extends JFrame {
         int responseCode = connection.getResponseCode();
 
         if (responseCode == HttpURLConnection.HTTP_OK) {
-            // A solicitação foi enviada com sucesso
             System.out.println("Mensagem enviada para o webhook com sucesso!");
 
-            // Adicionar a mensagem ao log
             addMessageToSpamLog("Você", message);
         } else {
-            // Houve um erro ao enviar a mensagem
             System.err.println("Erro ao enviar mensagem para o webhook. Código de resposta: " + responseCode);
         }
 
@@ -232,7 +227,6 @@ public class WebhookSender extends JFrame {
     }
 
     private void disconnectWebhook() {
-        // Desconectar o webhook ou realizar outras tarefas de limpeza, se necessário
     }
 
     public static void main(String[] args) {
